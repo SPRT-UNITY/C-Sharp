@@ -54,6 +54,20 @@ namespace TextRPG
             }
         }
 
+        public void AddGold(int add) 
+        {
+            gold += add;
+        }
+
+        public void RemoveGold(int remove) 
+        {
+            if(gold < remove) 
+            {
+                throw new Exception("Gold Cannot be under 0");
+            }
+            gold -= remove;
+        }
+
         public void LevelUp() 
         {
             level++;
@@ -74,7 +88,7 @@ namespace TextRPG
 
         public void EquipWeapon(Equipment weapon) 
         {
-            this.weapon = weapon;   
+            this.weapon = weapon;
         }
 
         public void EquipArmor(Equipment armor) 

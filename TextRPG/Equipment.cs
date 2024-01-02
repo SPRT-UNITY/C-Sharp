@@ -13,5 +13,14 @@ namespace TextRPG
     public class Equipment : Item
     {
         public Stat stat {  get; private set; }
+
+        public override string effectScript() 
+        {
+            foreach (var s in stat) 
+            {
+            
+            }
+            return "";
+        }
     }
 }

@@ -18,10 +18,10 @@ namespace TextRPG
         public Stat()
         {
             // default stat
-            MaxHP = 100;
-            CurHP = 100;
-            ATK = 10;
-            DEF = 5;
+            MaxHP = 0;
+            CurHP = 0;
+            ATK = 0;
+            DEF = 0;
             INS = 0;
         }
 

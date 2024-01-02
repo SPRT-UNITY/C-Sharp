@@ -20,6 +20,16 @@ namespace TextRPG
             value = 0;
         }
 
-        public virtual string effectScript { get; protected set; }
+        public Item(string name, string desc, int value, string effectScripts)
+        {
+            this.name = name;
+            this.desc = desc;
+            this.value = value;
+        }
+
+        public virtual string effectScript()
+        {
+            return "default effectScript";
+        }
     }
 }

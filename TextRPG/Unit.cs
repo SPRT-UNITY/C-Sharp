@@ -31,6 +31,11 @@ namespace TextRPG
         public void TakeDamage(int damage) 
         {
             stat.DecHealth(damage - RealtimeStat.DEF);
+
+            if(stat.CurHP <= 0) 
+            {
+                Dead();
+            }
         }
 
         public virtual void Dead() 
