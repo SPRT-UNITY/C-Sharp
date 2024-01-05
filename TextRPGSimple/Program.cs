@@ -79,6 +79,7 @@ namespace TextRPGSimple
                         exit = true;
                         break;
                     }
+                    Console.Clear();
                     curScene.GetAction(input);
                 }
 
@@ -249,7 +250,12 @@ namespace TextRPGSimple
         public Shop() 
         {
             items = new List<(Item, bool)> ();
-            items.Add((new Item(), false));
+            items.Add((new Item("수련자 갑옷", "수련에 도움을 주는 갑옷입니다.", 0, 5, 1000), false));
+            items.Add((new Item("무쇠 갑옷", "무쇠로 만들어져 튼튼한 갑옷입니다.", 0, 9, 2000), false));
+            items.Add((new Item("스파르타의 갑옷", "스파르타의 전사들이 사용했다는 전설의 갑옷입니다.", 0, 15, 3500), false));
+            items.Add((new Item("낡은 검", "어디에서나 쉽게 볼 수 있는 낡은 검입니다.", 2, 0, 600), false));
+            items.Add((new Item("청동 도끼", "어디선가 사용됐던거 같은 도끼입니다.", 5, 0, 1500), false));
+            items.Add((new Item("스파르타의 창", "스파르타의 전사들이 사용했다는 전설의 창입니다.", 7, 0, 2500), false));
         }
 
         public override void ShowInfo()
@@ -405,10 +411,10 @@ namespace TextRPGSimple
 
         public static Stat operator +(Stat s1, Stat s2) 
         {
-            s1.level = s2.level;
-            s1.ATK = s2.ATK;
-            s1.DEF = s2.DEF;
-            s1.GOLD = s2.GOLD;
+            s1.level += s2.level;
+            s1.ATK += s2.ATK;
+            s1.DEF += s2.DEF;
+            s1.GOLD += s2.GOLD;
             return s1;
         }
     }
@@ -438,7 +444,7 @@ namespace TextRPGSimple
                         stat = stat + i.Item1;
                     }
                 }
-                return new Stat();
+                return stat;
             } 
         }
 
