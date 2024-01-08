@@ -57,34 +57,34 @@ namespace TextRPGSimple
             equipment = new Equipment();
             buy = new Buy();
 
-            curScene = idle;
+            curScene = new Casino();
         }
 
         void Loop()
         {
             while (true)
             {
-                bool exit = false;
                 curScene.ShowInfo();
 
                 Console.WriteLine();
                 Console.WriteLine("원하시는 행동을 선택해주세요.");
                 Console.Write(">> ");
 
-                int input = -1;
-
-                while (int.TryParse(Console.ReadLine(), out input))
-                {
-                    if (input == 'q') {
-                        exit = true;
-                        break;
-                    }
-                    Console.Clear();
-                    curScene.GetAction(input);
-                }
-
-                if (exit) break;
+                int input = GetPlayerInputInt();
+                curScene.GetAction(input);
             }
+        }
+
+        public static int GetPlayerInputInt() 
+        {
+            int input = -1;
+            while (!int.TryParse(Console.ReadLine(), out input)) 
+            {
+                Console.Clear();
+            }
+
+            Console.Clear();
+            return input;
         }
 
         public void ChangeScene(Scene scene)
@@ -128,7 +128,6 @@ namespace TextRPGSimple
                     break;
             }
         }
-
     }
 
     public class PlayerInfo : Scene
@@ -481,6 +480,24 @@ namespace TextRPGSimple
                 Console.WriteLine($"공격력 : {DEF} (+{EquipmentStat.DEF})");
             Console.WriteLine($"최대 체력 : {MaxHP}");
             Console.WriteLine($"현재 체력 : {CurHP}");
+        }
+
+        public void gainGold(int gold) 
+        {
+            if (gold > 0)
+                this.GOLD += gold;
+        }
+
+        public void ConsumeGold(int gold) 
+        {
+            if(gold > this.GOLD) 
+            {
+                throw new Exception("골드를 가진 이상 소모하려고 합니다!");
+            }
+            else 
+            {
+                this.GOLD -= gold;
+            }
         }
     }
 }
